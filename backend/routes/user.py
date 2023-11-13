@@ -80,8 +80,8 @@ def change_password(c : Change):
             consulta = text('SELECT password FROM user WHERE user.email = :email')
             stored_password = session.execute(consulta, {'email': c.email}).scalar()
             if pwd_context.verify(c.old_password, stored_password):
-                consulta = text("UPDATE user SET user.password = :new_password")
-                session.execute(consulta, {"new_password" : pwd_context.hash(c.new_password)})
+                consulta = text("UPDATE user SET user.password = :new_password WHERE user.id = :id")
+                session.execute(consulta, {"new_password" : pwd_context.hash(c.new_password), "id" : user_id})
                 session.commit()
                 consulta = text("SELECT * FROM user WHERE user.id = :id")
                 return session.execute(consulta, {"id" : user_id}).first()._asdict()    
