@@ -5,11 +5,11 @@ ParkHub es un proyecto de reservas de parqueaderos que permite registrar usuario
 
 **Development**
   
-  BACKEND: Tomás Lopera
+  > BACKEND: Tomás Lopera
   
-  FULL-STACK: Tomás Lopera
+  > FULL-STACK: Tomás Lopera
   
-  FRONTEND: Pedro Sierra, David Betancur
+  > FRONTEND: Pedro Sierra, David Betancur
 
 ## Ejecucutar proyecto (Desarrollo)
 **Frontend**
