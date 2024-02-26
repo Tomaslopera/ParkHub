@@ -36,13 +36,15 @@ export const UserContextProvider = (props) => {
     
     const login = async ({ email, password }) => {
         try {
-            if (!validarEmail(email)) return "Email no valido";
+            // if (!validarEmail(email)) return "Email no valido";
             if (!validarPassword(password)) return "La contraseña debe contener: \n Al menos 8 caracteres \n Al menos 1 letra mayúscula \n Al menos 1 letra minuscula \n Al menos 1 número \n Al menos un caracter especial";
 
             const response = await axios.post(
                                 `${API_BASE_URL}/login`,
                                 { email, password }
             );
+
+            console.log(response)
             
             if (response.data==null)  return "Email o contraseña incorrectos";
 
