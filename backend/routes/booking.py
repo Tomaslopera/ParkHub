@@ -15,16 +15,15 @@ book = APIRouter()
 @book.post("/add_parking_lot", tags=["company"], description="Add parking lots to the Company")
 def add_parking_lot(p : ParkingLot):
     try:
-        new_id = str(uuid.uuid4())
         
-        consulta = text('INSERT INTO parking_lot VALUES (:uuid, :number)')
-        valores = {"uuid" : new_id, "number" : p.number}
+        consulta = text('INSERT INTO parking_lot VALUES (:number)')
+        valores = {"number" : p.number}
         session.execute(consulta, valores)
         
         session.commit()
         
-        consulta = text("SELECT * FROM parking_lot WHERE parking_lot.id = :id")
-        return session.execute(consulta, {"id" : new_id}).first()._asdict()
+        consulta = text("SELECT * FROM parking_lot WHERE parking_lot.number = :number")
+        return session.execute(consulta, {"number" : p.number}).first()._asdict()
     except Exception as e:
         print(f"Error al insertar en la base de datos: {e}")
         return None
